@@ -5,7 +5,7 @@ import com.spring.demo.dto.CartRequest;
 
 import java.util.List;
 
-public interface ICartService {
+public interface CartService {
     String addToCart(CartRequest cartRequest, String sessionId);
     String deleteCartItemById(Long id, String sessionId);
     String updateCartById(CartRequest cartRequest, String id);

@@ -1,5 +1,5 @@
 package com.spring.demo.controller;
-import com.spring.demo.service.IOrderService;
+import com.spring.demo.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 @AutoConfigureMockMvc
 public class OrderControllerTest {
     @MockBean
-    private IOrderService orderService;
+    private OrderService orderService;
     @Autowired
     private MockMvc mockMvc;
 

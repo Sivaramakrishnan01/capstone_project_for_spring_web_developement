@@ -2,7 +2,7 @@ package com.spring.demo.service;
 
 import com.spring.demo.dto.UserDto;
 
-public interface IUserService {
+public interface UserService {
     boolean userRegistration(UserDto userDto);
     boolean authenticate(String email, String password);
 

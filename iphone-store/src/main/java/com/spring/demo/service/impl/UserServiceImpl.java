@@ -4,7 +4,7 @@ import com.spring.demo.dto.UserDto;
 import com.spring.demo.entity.User;
 import com.spring.demo.mapper.Converter;
 import com.spring.demo.repository.UserRepository;
-import com.spring.demo.service.IUserService;
+import com.spring.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserService {
     private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private  final BCryptPasswordEncoder passwordEncoder;

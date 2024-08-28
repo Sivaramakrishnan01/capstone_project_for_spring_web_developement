@@ -1,5 +1,5 @@
 package com.spring.demo.service;
 
-public interface IOrderService {
+public interface OrderService {
     String checkOutOrder(String sessionId);
 }

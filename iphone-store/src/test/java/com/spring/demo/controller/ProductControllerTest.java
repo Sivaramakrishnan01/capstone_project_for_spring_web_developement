@@ -1,6 +1,6 @@
 package com.spring.demo.controller;
 import com.spring.demo.dto.ProductDto;
-import com.spring.demo.service.IProductService;
+import com.spring.demo.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,7 +24,7 @@ public class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private IProductService productService;
+    private ProductService productService;
 
     @Test
     @WithMockUser(username = "user@gmail.com", password = "user@123")
@@ -37,7 +37,7 @@ public class ProductControllerTest {
 
         Long productId = 1L;
 
-        when(productService.addProduct(any(ProductDto.class))).thenReturn(true);
+        when(productService.addProduct(any(ProductDto.class))).thenReturn(productId);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/products/addProduct")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{ \"title\": \"Test Product\", \"description\": \"Test Description\", \"price\": 10.0 , \"available\": 10}"))

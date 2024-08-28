@@ -15,7 +15,7 @@ import com.spring.demo.repository.CartRepository;
 import com.spring.demo.repository.ProductRepository;
 import com.spring.demo.repository.MyCustomSessionRepository;
 
-import com.spring.demo.service.ICartService;
+import com.spring.demo.service.CartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @Transactional
-public class CartServiceImpl implements ICartService {
+public class CartServiceImpl implements CartService {
     private final CartItemRepository cartItemRepository;
     private final CartRepository cartRepository;
     private final ProductRepository productRepository;

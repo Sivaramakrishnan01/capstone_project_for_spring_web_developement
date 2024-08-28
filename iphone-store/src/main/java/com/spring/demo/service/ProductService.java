@@ -6,8 +6,8 @@ import com.spring.demo.entity.IphoneProduct;
 import java.util.List;
 import java.util.Optional;
 
-public interface IProductService {
-    boolean addProduct(ProductDto productDto);
+public interface ProductService {
+    Long addProduct(ProductDto productDto);
     public List<IphoneProduct> getListOfProduct();
     Optional<IphoneProduct> getProductById(Long id);
 

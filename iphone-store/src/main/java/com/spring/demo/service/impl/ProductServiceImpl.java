@@ -3,7 +3,7 @@ import com.spring.demo.dto.ProductDto;
 import com.spring.demo.entity.IphoneProduct;
 import com.spring.demo.mapper.Converter;
 import com.spring.demo.repository.ProductRepository;
-import com.spring.demo.service.IProductService;
+import com.spring.demo.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,20 +15,21 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ProductServiceImpl implements IProductService {
+public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     @Override
-    public boolean  addProduct(ProductDto productDto) {
+    public Long  addProduct(ProductDto productDto) {
         try {
             IphoneProduct iphoneProduct = new IphoneProduct();
             Converter.copyProperty(productDto, iphoneProduct);
             productRepository.save(iphoneProduct);
-            return true;
+            return iphoneProduct.getId();
         }catch (Exception e){
             log.error("exception occurred while adding product");
-            return false;
+
         }
+        return 0L;
     }
     public List<IphoneProduct> getListOfProduct(){
         try {

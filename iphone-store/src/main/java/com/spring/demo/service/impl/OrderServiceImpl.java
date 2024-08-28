@@ -9,7 +9,7 @@ import com.spring.demo.repository.CartRepository;
 import com.spring.demo.repository.CustomerOrderRepository;
 import com.spring.demo.repository.ProductRepository;
 import com.spring.demo.repository.UserRepository;
-import com.spring.demo.service.IOrderService;
+import com.spring.demo.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class OrderServiceImpl implements IOrderService {
+public class OrderServiceImpl implements OrderService {
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
@@ -83,7 +83,7 @@ public class OrderServiceImpl implements IOrderService {
             log.info("Order placed successfully with ID: {}", order.getId());
 
             cart.getCartItemList().clear();
-            cartRepository.save(cart);
+            cartRepository.deleteBySessionId(sessionId);
 
             log.info("Cart cleared for session ID: {}", sessionId);
 

@@ -3,8 +3,7 @@ package com.spring.demo.controller;
 import com.spring.demo.dto.CartItemDto;
 import com.spring.demo.dto.CartRequest;
 import com.spring.demo.dto.response.ResponseDto;
-import com.spring.demo.service.ICartService;
-import jakarta.persistence.EntityManager;
+import com.spring.demo.service.CartService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +18,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class CartController {
-    private final ICartService cartService;
+    private final CartService cartService;
 
-    @PostMapping("/addItemsToCart")
+    @PostMapping("/add-items-to-cart")
     public ResponseEntity<ResponseDto> addToCart(@Valid @RequestBody CartRequest cartRequest, HttpSession session) {
         log.info("Adding item to cart: {}", cartRequest);
         String message = cartService.addToCart(cartRequest, session.getId());
@@ -31,7 +30,7 @@ public class CartController {
     }
 
 
-    @PutMapping("/updateCart")
+    @PutMapping("/update-cart")
     public ResponseEntity<ResponseDto> updateCartInformation(@Valid @RequestBody CartRequest cartRequest, HttpSession session) {
         log.info("Updating cart item: {}", cartRequest);
         String message = cartService.updateCartById(cartRequest, session.getId());
@@ -41,7 +40,7 @@ public class CartController {
     }
 
 
-    @GetMapping("/getCartItems")
+    @GetMapping("/get-cartitems")
     public ResponseEntity<List<CartItemDto>> getCartItems(HttpSession session) {
         log.info("Retrieving cart items. Session ID: {}", session.getId());
         List<CartItemDto> cartItems = cartService.getAllCartItems(session.getId());

@@ -4,7 +4,7 @@ import com.spring.demo.dto.ProductDto;
 import com.spring.demo.dto.response.ResponseDto;
 import com.spring.demo.entity.IphoneProduct;
 import com.spring.demo.exception.ProductServiceException;
-import com.spring.demo.service.IProductService;
+import com.spring.demo.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -19,20 +19,21 @@ import java.util.List;
 public class ProductController {
 
     private static final Logger log = LoggerFactory.getLogger(ProductController.class);
-    private final IProductService productService;
+    private final ProductService productService;
 
-    @PostMapping("/addProduct")
+    @PostMapping("/add-product")
     public ResponseEntity<ResponseDto> addProduct(@Valid @RequestBody ProductDto productDto){
-        if(productService.addProduct(productDto)){
-            ResponseDto responseDto=new ResponseDto("success","product created successfully");
-            return new ResponseEntity(responseDto,HttpStatus.CREATED);
+        Long productID= productService.addProduct(productDto);
+        if(productID>0) {
+            ResponseDto responseDto = new ResponseDto("success", "product created successfully");
+            return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
         }
         else {
             throw new ProductServiceException("Exception occurred while creating product");
         }
     }
 
-    @GetMapping("/viewProductList")
+    @GetMapping("/view-product-list")
     public ResponseEntity<List<IphoneProduct>> getProductList(){
         log.info("Retrieving the list of products");
         List<IphoneProduct> product=productService.getListOfProduct();

@@ -3,7 +3,7 @@ package com.spring.demo.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.demo.dto.CartItemDto;
 import com.spring.demo.dto.CartRequest;
-import com.spring.demo.service.ICartService;
+import com.spring.demo.service.CartService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -32,7 +32,7 @@ class CartControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private ICartService cartService;
+    private CartService cartService;
 
     @Test
     @WithMockUser(username = "user@gmail.com", password = "user@123")
