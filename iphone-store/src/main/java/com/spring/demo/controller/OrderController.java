@@ -16,7 +16,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping("/checkout-Cart")
+    @PostMapping("/")
     public ResponseDto checkOutOrder(HttpSession session) {
         log.info("Checking out order for session ID: {}", session.getId());
         String message = orderService.checkOutOrder(session.getId());

@@ -14,14 +14,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/product")
 @RequiredArgsConstructor
 public class ProductController {
 
     private static final Logger log = LoggerFactory.getLogger(ProductController.class);
     private final ProductService productService;
 
-    @PostMapping("/add-product")
+    @PostMapping("/")
     public ResponseEntity<ResponseDto> addProduct(@Valid @RequestBody ProductDto productDto){
         Long productID= productService.addProduct(productDto);
         if(productID>0) {
@@ -33,7 +33,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/view-product-list")
+    @GetMapping("/")
     public ResponseEntity<List<IphoneProduct>> getProductList(){
         log.info("Retrieving the list of products");
         List<IphoneProduct> product=productService.getListOfProduct();

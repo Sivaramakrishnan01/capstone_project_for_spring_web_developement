@@ -20,7 +20,7 @@ import java.util.List;
 public class CartController {
     private final CartService cartService;
 
-    @PostMapping("/add-items-to-cart")
+    @PostMapping("/")
     public ResponseEntity<ResponseDto> addToCart(@Valid @RequestBody CartRequest cartRequest, HttpSession session) {
         log.info("Adding item to cart: {}", cartRequest);
         String message = cartService.addToCart(cartRequest, session.getId());
@@ -30,7 +30,7 @@ public class CartController {
     }
 
 
-    @PutMapping("/update-cart")
+    @PutMapping("/")
     public ResponseEntity<ResponseDto> updateCartInformation(@Valid @RequestBody CartRequest cartRequest, HttpSession session) {
         log.info("Updating cart item: {}", cartRequest);
         String message = cartService.updateCartById(cartRequest, session.getId());
@@ -40,7 +40,7 @@ public class CartController {
     }
 
 
-    @GetMapping("/get-cartitems")
+    @GetMapping("/")
     public ResponseEntity<List<CartItemDto>> getCartItems(HttpSession session) {
         log.info("Retrieving cart items. Session ID: {}", session.getId());
         List<CartItemDto> cartItems = cartService.getAllCartItems(session.getId());

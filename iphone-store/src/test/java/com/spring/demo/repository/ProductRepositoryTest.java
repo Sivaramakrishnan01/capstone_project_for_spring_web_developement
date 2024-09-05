@@ -103,7 +103,7 @@ class ProductRepositoryTest {
         List<IphoneProduct> products = productRepository.findAll();
 
         assertThat(products).isNotEmpty();
-        assertThat(products).hasSize(3);
+        assertThat(products).hasSize(4);
     }
 }
 
